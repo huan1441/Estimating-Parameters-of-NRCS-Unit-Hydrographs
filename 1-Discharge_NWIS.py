@@ -58,7 +58,7 @@ def GetFlow(site_no,begin_date,end_date):
 
     peaks,_ =find_peaks(flow['discharge_cfs'],prominence=40)
 
-    # seperate the flood event(assuming that duration is about 5 days) and save as JPEG and CSV
+    # separate the flood event(assuming that duration is about 5 days) and save as JPEG and CSV
     # store them in the "Flood_Events" folder
 
     Folder2 = './Flood_Events_' + site_no +'/'
