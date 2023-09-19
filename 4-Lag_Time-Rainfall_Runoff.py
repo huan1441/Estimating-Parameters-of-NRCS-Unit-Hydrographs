@@ -64,8 +64,17 @@ for file in filename:
     # initial abstraction
     Ia = 0.2*S
 
+    index_Ia = 0
+
+    for i in range(len(y2)):
+        Ia = Ia - y2[i]
+        if Ia <= 0:
+            index_Ia = i
+            break
+
     # calculate the excess rainfall
     Pe = (P-Ia)**2/(P-Ia+S)
+    # for visualization purposes
     y2=y2*Pe/P
 
     # obtain the peak discharge and the peak time
@@ -73,13 +82,13 @@ for file in filename:
     T_peak = date1[Data.iloc[:,1]==Q_peak]
 
     # obtain the duration of the excess rainfall
-    D_rain = date2.iloc[-1]-date2.iloc[0]
+    D_rain = date2.iloc[-1]-date2.iloc[index_Ia]
 
     # calculate the lag time (in hours)
 
     Lag_time = (T_peak.iloc[0]-date1.iloc[0]-D_rain/2).days*24+(T_peak.iloc[0]-date1.iloc[0]-D_rain/2).seconds/3600
     LAG.loc[file+".csv"] = Lag_time
-
+'''
     fig, ax1 = plt.subplots(figsize=(12,8))
     ax1.plot(date1, y1,color='blue',label="Runoff",linewidth = 3)
 
@@ -102,8 +111,8 @@ for file in filename:
 
     plt.savefig(Folder1 + "Rainfall-Runoff Event of " + file + ".jpeg")
     plt.close()
-
-# save PRF of all the runoff events as CSV in the "UH" folder
+'''
+# save the lag time of all the runoff events as CSV in the "UH" folder
 
 LAG.to_csv(Folder1+"Lag Time of Watersheds.csv")
 
