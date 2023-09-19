@@ -88,7 +88,7 @@ for file in filename:
 
     Lag_time = (T_peak.iloc[0]-date1.iloc[0]-D_rain/2).days*24+(T_peak.iloc[0]-date1.iloc[0]-D_rain/2).seconds/3600
     LAG.loc[file+".csv"] = Lag_time
-'''
+
     fig, ax1 = plt.subplots(figsize=(12,8))
     ax1.plot(date1, y1,color='blue',label="Runoff",linewidth = 3)
 
@@ -111,7 +111,7 @@ for file in filename:
 
     plt.savefig(Folder1 + "Rainfall-Runoff Event of " + file + ".jpeg")
     plt.close()
-'''
+
 # save the lag time of all the runoff events as CSV in the "UH" folder
 
 LAG.to_csv(Folder1+"Lag Time of Watersheds.csv")
