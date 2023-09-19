@@ -86,7 +86,7 @@ for file in filename:
 
     # calculate the lag time (in hours)
 
-    Lag_time = (T_peak.iloc[0]-date1.iloc[0]-D_rain/2).days*24+(T_peak.iloc[0]-date1.iloc[0]-D_rain/2).seconds/3600
+    Lag_time = (T_peak.iloc[0]-date2.iloc[index_Ia]-D_rain/2).days*24+(T_peak.iloc[0]-date2.iloc[index_Ia]-D_rain/2).seconds/3600
     LAG.loc[file+".csv"] = Lag_time
 
     fig, ax1 = plt.subplots(figsize=(12,8))
