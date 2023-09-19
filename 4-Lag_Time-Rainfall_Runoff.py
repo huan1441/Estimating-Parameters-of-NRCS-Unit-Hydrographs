@@ -44,7 +44,7 @@ for file in filename:
 
     file = file.split(".")[0]
 
-    date1=Data.Date1
+    date1=pd.to_datetime(Data.Date1).dt.tz_localize(None)
     y1=Data.Discharge_cfs
 
     date2=Data.Date2
@@ -86,7 +86,7 @@ for file in filename:
 
     # calculate the lag time (in hours)
 
-    Lag_time = (T_peak.iloc[0]-date2.iloc[index_Ia]-D_rain/2).days*24+(T_peak.iloc[0]-date2.iloc[index_Ia]-D_rain/2).seconds/3600
+    Lag_time = (T_peak.iloc[0]-date1.iloc[index_Ia]-D_rain/2).days*24+(T_peak.iloc[0]-date1.iloc[index_Ia]-D_rain/2).seconds/3600
     LAG.loc[file+".csv"] = Lag_time
 
     fig, ax1 = plt.subplots(figsize=(12,8))
@@ -109,7 +109,7 @@ for file in filename:
 
     plt.title("Rainfall-Runoff Event of " + file,fontsize=15)
 
-    plt.savefig(Folder1 + "Rainfall-Runoff Event of " + file + ".jpeg")
+    #plt.savefig(Folder1 + "Rainfall-Runoff Event of " + file + ".jpeg")
     plt.close()
 
 # save the lag time of all the runoff events as CSV in the "UH" folder
