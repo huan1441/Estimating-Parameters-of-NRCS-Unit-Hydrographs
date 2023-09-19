@@ -115,8 +115,8 @@ def GetRain(USGS_Gauge,start_date,end_date,extent):
 ## Main program
 
 # access the data from the NCDC database with my token
-
-my_token = "DBtMXiWkKSWyqfpLsFCyFXcSMndgPCml"
+# Please replace the "******" with your own token
+my_token = "******"
 
 NSEW = pd.read_csv("watershed_extent.csv",dtype={'Gauge_No':str})
 
